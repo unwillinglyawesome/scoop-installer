@@ -625,7 +625,7 @@ function Install-Scoop {
         $scoopMainUnzipTempDir = "$SCOOP_MAIN_BUCKET_DIR\_tmp"
         Write-Verbose "Extracting $scoopMainZipfile to $scoopMainUnzipTempDir"
         Expand-ZipArchive $scoopMainZipfile $scoopMainUnzipTempDir
-        Copy-Item "$scoopMainUnzipTempDir\Main-*\*" $SCOOP_MAIN_BUCKET_DIR -Recurse -Force
+        Copy-Item "$scoopMainUnzipTempDir\scoop-bucket-*\*" $SCOOP_MAIN_BUCKET_DIR -Recurse -Force
 
         # Cleanup
         Remove-Item $scoopUnzipTempDir -Recurse -Force
@@ -682,11 +682,11 @@ $SCOOP_CONFIG_HOME = $env:XDG_CONFIG_HOME, "$env:USERPROFILE\.config" | Select-O
 $SCOOP_CONFIG_FILE = "$SCOOP_CONFIG_HOME\scoop\config.json"
 
 # TODO: Use a specific version of Scoop and the main bucket
-$SCOOP_PACKAGE_REPO = 'https://github.com/ScoopInstaller/Scoop/archive/master.zip'
-$SCOOP_MAIN_BUCKET_REPO = 'https://github.com/ScoopInstaller/Main/archive/master.zip'
+$SCOOP_PACKAGE_REPO = "https://github.com/unwillinglyawesome/scoop/archive/master.zip"
+$SCOOP_MAIN_BUCKET_REPO = "https://github.com/unwillinglyawesome/scoop-bucket/archive/master.zip"
 
-$SCOOP_PACKAGE_GIT_REPO = 'https://github.com/ScoopInstaller/Scoop.git'
-$SCOOP_MAIN_BUCKET_GIT_REPO = 'https://github.com/ScoopInstaller/Main.git'
+$SCOOP_PACKAGE_GIT_REPO = "https://github.com/unwillinglyawesome/scoop.git"
+$SCOOP_MAIN_BUCKET_GIT_REPO = "https://github.com/unwillinglyawesome/scoop-bucket.git"
 
 # Quit if anything goes wrong
 $oldErrorActionPreference = $ErrorActionPreference
