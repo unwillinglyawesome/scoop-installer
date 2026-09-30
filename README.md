@@ -21,18 +21,18 @@ Run this command from a **non-admin** PowerShell to install scoop with default c
 scoop will be install to `C:\Users\<YOUR USERNAME>\scoop`.
 
 ```powershell
-irm get.scoop.sh | iex
+irm https://raw.githubusercontent.com/unwillinglyawesome/scoop-installer/refs/heads/master/install.ps1 | iex
 ```
 
 You can use proxies if you have network trouble in accessing GitHub.
 
 ```powershell
-iex "& {$(irm get.scoop.sh -Proxy 'http://<ip:port>')} -Proxy 'http://<ip:port>'"
+iex "& {$(irm https://raw.githubusercontent.com/unwillinglyawesome/scoop-installer/refs/heads/master/install.ps1 -Proxy 'http://<ip:port>')} -Proxy 'http://<ip:port>'"
 
 # or
 $env:HTTP_PROXY='http://<ip:port>'
 $env:HTTPS_PROXY='http://<ip:port>'
-irm get.scoop.sh | iex
+irm https://raw.githubusercontent.com/unwillinglyawesome/scoop-installer/refs/heads/master/install.ps1 | iex
 ```
 
 ### Advanced Installation
@@ -40,7 +40,7 @@ irm get.scoop.sh | iex
 If you want to have an advanced installation, you can download the installer and manually execute it with parameters.
 
 ```powershell
-irm get.scoop.sh -outfile 'install.ps1'
+irm https://raw.githubusercontent.com/unwillinglyawesome/scoop-installer/refs/heads/master/install.ps1 -outfile 'install.ps1'
 ```
 
 To see all configurable parameters of the installer.
@@ -63,7 +63,7 @@ Or you can use the legacy method to configure custom directory by setting Enviro
 $env:SCOOP='D:\Applications\Scoop'
 $env:SCOOP_GLOBAL='F:\GlobalScoopApps'
 [Environment]::SetEnvironmentVariable('SCOOP_GLOBAL', $env:SCOOP_GLOBAL, 'Machine')
-irm get.scoop.sh | iex
+irm https://raw.githubusercontent.com/unwillinglyawesome/scoop-installer/refs/heads/master/install.ps1 | iex
 ```
 
 #### For Admin
@@ -74,14 +74,14 @@ Scoop as administrator. Please download the installer and manually execute it
 with the `-RunAsAdmin` parameter in an elevated console. Here is the example:
 
 ```powershell
-irm get.scoop.sh -outfile 'install.ps1'
+irm https://raw.githubusercontent.com/unwillinglyawesome/scoop-installer/refs/heads/master/install.ps1 -outfile 'install.ps1'
 .\install.ps1 -RunAsAdmin [-OtherParameters ...]
 ```
 
 What if I don't care and just want a one-line command:
 
 ```powershell
-iex "& {$(irm get.scoop.sh)} -RunAsAdmin"
+iex "& {$(irm https://raw.githubusercontent.com/unwillinglyawesome/scoop-installer/refs/heads/master/install.ps1)} -RunAsAdmin"
 ```
 
 #### CI Pipeline
@@ -92,7 +92,7 @@ for GitHub Actions:
 ```yaml
 - name: Install Scoop
   shell: pwsh
-  run: irm get.scoop.sh | iex
+  run: irm https://raw.githubusercontent.com/unwillinglyawesome/scoop-installer/refs/heads/master/install.ps1 | iex
 ```
 
 If the CI environment does not have the `$env:CI` variable set, you might need
@@ -103,7 +103,7 @@ pipeline, or set `$env:CI` before the installation command.
 - name: Install Scoop
   shell: pwsh
   run: |
-    irm get.scoop.sh | iex
+    irm https://raw.githubusercontent.com/unwillinglyawesome/scoop-installer/refs/heads/master/install.ps1 | iex
     exit $LASTEXITCODE
 ```
 
